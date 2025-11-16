@@ -1,0 +1,37 @@
+/* Estilos generales */
+main {
+  padding: 16px;
+}
+
+h1 {
+  font-size: 100px;
+  text-align: center;
+}
+
+/* Tamaño fijo */
+@media (width: 200px) {
+  h1 {
+    background-color: red;
+  }
+}
+
+/* Pantallas menores a */
+@media (max-width: 400px) {
+  h1 {
+    background-color: red;
+  }
+}
+
+/* Pantallas mayores a */
+@media (min-width: 400px) {
+  h1 {
+    background-color: red;
+  }
+}
+
+/* Pantallas entre x y y */
+@media (min-width: 400px) and (max-width: 500px) {
+  h1 {
+    background-color: red;
+  }
+}
