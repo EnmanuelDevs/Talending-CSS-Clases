@@ -1,0 +1,5 @@
+/* Sombra */
+.none {
+  box-shadow: 16px 16px 16px gray;
+  text-shadow: 1px 1px 4px red;
+}

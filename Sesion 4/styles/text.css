@@ -1,0 +1,33 @@
+/* Alinaciones */
+.none {
+  text-align: left;
+  text-align: center;
+  text-align: right;
+  text-align: justify; /* evitar */
+}
+
+/* El grosor, se usa para la negritas */
+.none {
+  font-family: system-ui;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100; /* 100 - 900 */
+  font-weight: thin; /*  -> 100 */
+  font-weight: regular; /*  -> 400 */
+  font-weight: bold; /*  -> 700 */
+  font-weight: bolder; /*  -> 900 */
+}
+
+/* Transormaciones */
+.none {
+  text-transform: lowercase; /* todo en miniscula */
+  text-transform: uppercase; /* todo en mayusculas */
+  text-transform: capitalize; /* cada palabra empezar con mayuscula */
+
+  font-style: normal;
+  font-style: italic;
+  font-style: oblique;
+
+  text-decoration: underline; /* subrayado */
+  text-decoration: line-through; /* tachado */
+  text-decoration: wavy; /* tachado */
+}

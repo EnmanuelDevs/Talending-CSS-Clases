@@ -1,0 +1,25 @@
+.none {
+  /* Color por nombres */
+  color: aliceblue blue crimson darkorange;
+
+  /* Color por valores hexadecimales (RGB) */
+  color: #ff0000 #00ff00 #0000ff #ffffff #000;
+  color: #f00 #0f0 #00f #fff #2b2d6b;
+  color: rgb(255, 0, 0) rgb(0, 255, 0) rgb(0, 0, 255);
+  color: rgb(100%, 0%, 0%) rgb(0%, 100%, 0%) rgb(0%, 0%, 100%);
+
+  /* Color por valores HSL */
+  color: hsl(90, 100%, 50%);
+
+  /* Fondos */
+  background-color: lightgray yellow;
+  background-color: #fafafa #123456;
+  background-color: rgb(240, 240, 240) rgb(10, 20, 30);
+  background-color: hsl(200, 50%, 50%);
+
+  /* Bordes */
+  border-color: red;
+  border-color: #000000 #ffffff;
+  border-color: rgb(0, 0, 0) rgb(255, 255, 255);
+  border-color: hsl(0, 0%, 0%) hsl(0, 0%, 100%);
+}

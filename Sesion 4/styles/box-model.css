@@ -1,0 +1,93 @@
+*,
+*::before,
+*::after {
+  /* Box sizing le dice que el ancho y alto de los elementos se calculen incluyendo el padding y el borde */
+  box-sizing: border-box;
+}
+
+/* Margenes */
+.none {
+  /* Margen superior */
+  margin-top: 10px;
+
+  /* Margen derecho */
+  margin-right: 15px;
+
+  /* Margen inferior */
+  margin-bottom: 10px;
+
+  /* Margen izquierdo */
+  margin-left: 15px;
+
+  margin: 10px; /* shorthand all sides */
+  margin: 10px 15px; /* shorthand top Y bottom, right ˆ=Y left */
+  margin: 10px 15px 10px; /* shorthand top -> bottom, right -> left NOTA: no recomendado */
+  margin-inline: 15px; /* shorthand left Y right O right Y left DEPENDE de la direccion del texto */
+  margin-block: 10px; /* shorthand top Y bottom O bottom Y top DEPENDE de la direccion del texto */
+}
+
+/* Bordes */
+.none {
+  /* Borde superior */
+  border-top-width: 10px;
+  border-top-style: solid;
+  border-top-color: #ccc;
+  border-top: 2px solid #ccc;
+
+  /* Borde derecho */
+  border-right-width: 10px;
+  border-right-style: solid;
+  border-right-color: #ccc;
+  border-right: 2px solid #ccc;
+
+  /* Borde inferior */
+  border-bottom-width: 10px;
+  border-bottom-style: solid;
+  border-bottom-color: #ccc;
+  border-bottom: 2px solid #ccc;
+
+  /* Borde izquierdo */
+  border-left-width: 10px;
+  border-left-style: solid;
+  border-left-color: #ccc;
+  border-left: 2px solid #ccc;
+
+  /* Border all side */
+  border-width: 10px;
+  border-style: solid;
+  border-color: #ccc;
+  border: 2px solid #ccc;
+
+  /* Curva de los borders */
+  border-radius: 10px;
+}
+
+/* Padding */
+.none {
+  /* Padding superior */
+  padding-top: 10px;
+
+  /* Padding derecho */
+  padding-right: 15px;
+
+  /* Padding inferior */
+  padding-bottom: 10px;
+
+  /* Padding izquierdo */
+  padding-left: 15px;
+
+  padding: 10px; /* shorthand all sides */
+  padding: 10px 15px; /* shorthand top -> bottom, right -> left */
+  padding: 10px 15px 10px 15px; /* shorthand NOTA: no recomendado */
+  padding-inline: 15px; /* shorthand left Y right O right Y left DEPENDE de la direccion del texto */
+  padding-block: 10px; /* shorthand top Y bottom O bottom Y top DEPENDE de la direccion del texto */
+}
+
+/* Contenido */
+.none {
+  /* Ancho */
+  width: 200px;
+
+  /* Alto */
+  height: 100px;
+}
