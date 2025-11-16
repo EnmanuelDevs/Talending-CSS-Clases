@@ -1,0 +1,214 @@
+/*
+  SheetNotes: Selectores en CSS
+  -----------------------------------
+  Archivo de referencia rápida que explica y muestra ejemplos de los selectores CSS
+  (Bastante comentarios y reglas de ejemplo para experimentar en un proyecto).
+
+  Instrucciones: Copia este archivo a tu proyecto .css y prueba las reglas en el inspector
+  del navegador. Los comentarios explican comportamiento, especificidad y casos prácticos.
+*/
+
+/* --------------------------------------------------
+   1) SELECTOR UNIVERSAL
+   Selecciona todos los elementos.
+   Es caro si se usa indiscriminadamente.
+   Especificidad: 0,0,0,0
+   -------------------------------------------------- */
+* {
+  box-sizing: border-box; /* ejemplo práctico */
+}
+
+/* --------------------------------------------------
+   2) SELECTOR DE TIPO (ELEMENTO)
+   Selecciona todos los <p>, <h1>, etc.
+   Especificidad: 0,0,0,1 por cada tipo
+   -------------------------------------------------- */
+p {
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------
+   3) SELECTOR DE CLASE
+   Selecciona por clase. Muy usado.
+   Especificidad: 0,0,1,0 por cada clase
+   -------------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+/* combinando tipos y clases */
+button.btn { /* especificidad 0,0,1,1 */ }
+
+/* --------------------------------------------------
+   4) SELECTOR DE ID
+   Selecciona por id (único por documento idealmente).
+   Especificidad: 0,1,0,0 por cada id
+   Evitar usar ids para estilos globales; favorece clases.
+   -------------------------------------------------- */
+#header {
+  background: #f5f5f5;
+}
+
+/* --------------------------------------------------
+   5) SELECTORES DE ATRIBUTO
+   [attr], [attr="value"], [attr~="word"], [attr^="start"], [attr$="end"], [attr*="contains"]
+   Especificidad: 0,0,1,0 (como una clase)
+   -------------------------------------------------- */
+input[disabled] {
+  opacity: 0.6;
+}
+
+a[href^="https"]::after {
+  content: " 🔒"; /* ejemplo: marcar enlaces seguros */
+}
+
+/* --------------------------------------------------
+   6) SELECTORES DE DESCENDIENTE Y HIJO
+   - Descendiente: A B  (B dentro de A, en cualquier profundidad)
+   - Hijo directo: A > B (B es hijo directo de A)
+   -------------------------------------------------- */
+.nav a { /* descendiente */ }
+.nav > ul { /* hijo directo */ }
+
+/* --------------------------------------------------
+   7) SELECTORES DE ADYACENTE Y HERMANO GENERAL
+   - Adyacente: A + B  (B inmediatamente después de A)
+   - Hermano general: A ~ B (B viene después de A, mismo padre)
+   -------------------------------------------------- */
+h2 + p {
+  margin-top: 0.25rem; /* párrafo inmediatamente después de h2 */
+}
+
+/* --------------------------------------------------
+   8) PSEUDO-CLASES (interacción / estado)
+   :hover, :focus, :active, :checked, :disabled, :nth-child(), etc.
+   Especificidad: varía; suelen comportarse como clases (0,0,1,0)
+   -------------------------------------------------- */
+a:hover {
+  text-decoration: underline;
+}
+
+/* nth-child - ejemplos */
+ul > li:nth-child(odd) { background: rgba(0,0,0,0.03); }
+
+/* --------------------------------------------------
+   9) PSEUDO-ELEMENTOS
+   ::before, ::after, ::first-line, ::first-letter
+   IMPORTANTE: usa doble dos puntos (::) para pseudo-elementos modernos.
+   -------------------------------------------------- */
+.card::before {
+  content: "";
+  display: block;
+}
+
+/* --------------------------------------------------
+   10) AGRUPACIÓN Y LISTAS
+   Seleccionar múltiples selectores con comas.
+   -------------------------------------------------- */
+h1, h2, h3 { font-family: system-ui, -apple-system; }
+
+/* --------------------------------------------------
+   11) :not(), :is(), :where()
+   - :not(selector) excluye lo que coincide.
+   - :is(...) permite agrupar alternativas, pero toma la especificidad del selector más específico
+   - :where(...) igual que :is() pero siempre tiene especificidad 0,0,0,0 (útil para reglas de reset)
+   -------------------------------------------------- */
+/* ejemplo práctico: seleccionar elementos que sean botones o enlaces que NO tengan clase .plain */
+:is(button, a):not(.plain) {
+  cursor: pointer;
+}
+
+/* :where para reglas base sin añadir especificidad */
+:where(header, footer, main) { margin: 0; }
+
+/* --------------------------------------------------
+   12) ESPECIFICIDAD (regla rápida)
+   - Inline styles: 1,0,0,0 (están fuera del CSS pero cuentan como el más alto)
+   - IDs: 0,1,0,0
+   - Clases/atributos/pseudo-clases: 0,0,1,0
+   - Elementos/pseudo-elementos: 0,0,0,1
+
+   Ejemplo: #app .card p  => 0 (ids) =1, clases=1, tipos=1 -> especificidad 0,1,1,1
+   Las reglas con mayor especificidad ganan.
+   En igualdad gana la regla que aparece después (última declarada).
+   -------------------------------------------------- */
+
+/* --------------------------------------------------
+   13) IMPORTANTE: !important
+   Forzar una propiedad con !important sobrescribe especificidad normal, pero
+   se debe evitar su uso salvo casos necesarios.
+   -------------------------------------------------- */
+.alert { color: red !important; }
+
+/* --------------------------------------------------
+   14) EJEMPLOS COMPLETOS (casos de uso)
+   -------------------------------------------------- */
+/* Barra de navegación: estilos base y estados */
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+.nav a {
+  padding: 0.5rem;
+  text-decoration: none;
+}
+.nav a.active {
+  border-bottom: 2px solid currentColor; /* marcar enlace activo */
+}
+
+/* Formularios: seleccionar inputs según atributo y estado */
+input[type="text"]:focus {
+  outline: 2px solid Highlight;
+}
+
+/* Tarjeta con pseudo-elemento decorativo */
+.card {
+  position: relative;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* --------------------------------------------------
+   15) CONSEJOS PRÁCTICOS
+   - Prefiere clases para estilos reutilizables.
+   - Evita selectores demasiado anidados (difícil de mantener y subir especificidad).
+   - Usa :where() para resets y utilidades para mantener baja la especificidad.
+   - Documenta patrones (BEM, utility-first) para equipos.
+   -------------------------------------------------- */
+
+/* --------------------------------------------------
+   16) TABLA RÁPIDA DE EJEMPLOS (resumen)
+
+   Selector                     | Ejemplo             | Especificidad
+   ----------------------------------------------------------------
+   Universal                    | *                   | 0,0,0,0
+   Tipo                         | p                   | 0,0,0,1
+   Clase                        | .btn                | 0,0,1,0
+   ID                           | #main               | 0,1,0,0
+   Atributo                     | [type="text"]     | 0,0,1,0
+   Descendiente                 | .nav a              | 0,0,1,1
+   Hijo directo                 | .nav > li           | 0,0,1,1
+   Adyacente                    | h2 + p              | 0,0,0,2
+   Pseudo-clase                 | a:hover             | 0,0,1,1
+   Pseudo-elemento              | p::first-line       | 0,0,0,2
+   :is() / :where()             | :is(.a, .b)         | depende / 0,0,0,0 (where)
+
+   -------------------------------------------------- */
+
+/* --------------------------------------------------
+   17) Ejercicio rápido (usa en HTML):
+   - Crea varios <section class="card"> con <h2> y <p>
+   - Prueba estilos .card > h2 + p, .card p:first-line, .card::before
+   - Observa en el inspector cómo cambia la especificidad cuando añades un #id o una clase
+   -------------------------------------------------- */
+
+/* Fin del SheetNotes sobre selectores */
